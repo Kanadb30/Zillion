@@ -1,0 +1,8 @@
+Clerk Authentication completed
+ 
+
+ To do :-
+
+ => change color schemes of buttons and navbar text;
+ => make the logo look a little bit bigger;
+ =>completely check entire ui for any style glitches;
