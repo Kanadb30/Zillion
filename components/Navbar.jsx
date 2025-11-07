@@ -1,14 +1,15 @@
 'use client'
-import { Search, ShoppingCart } from "lucide-react";
+import { PackageIcon, Search, ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import SquareLogo from "./SquareLogo";
-
+import { useUser, useClerk, UserButton } from "@clerk/nextjs";
 const Navbar = () => {
-
+    const { user } = useUser();
     const router = useRouter();
+    const {openSignIn} = useClerk();
 
     const [search, setSearch] = useState('')
     const cartCount = useSelector(state => state.cart.total)
@@ -44,19 +45,50 @@ const Navbar = () => {
                             Cart
                             <button className="absolute -top-1 left-3 text-[8px] text-white bg-green-600 size-3.5 rounded-full">{cartCount}</button>
                         </Link>
+                        { !user ? (
+                                 <button onClick={openSignIn} className="px-8 py-2 bg-green-600 hover:bg-green-700 transition text-white rounded-full">
+                                    Login
+                                </button>
+                            ) : (
+                                <UserButton>
+                                    <UserButton.MenuItems>
+                                        <UserButton.Action labelIcon={<PackageIcon size={16} />} label="My Orders" onClick={()=>router.push('/orders')}/>
 
-                        <button className="px-8 py-2 bg-green-600 hover:bg-green-700 transition text-white rounded-full">
-                            Login
-                        </button>
+                                        </UserButton.MenuItems>
+                                </UserButton>
+                            )
+                        }
+                       
 
                     </div>
 
                     {/* Mobile User Button  */}
-                    <div className="sm:hidden">
-                        <button className="px-7 py-1.5 bg-green-600 hover:bg-green-700 text-sm transition text-white rounded-full">
+                    {
+                        user ? (
+                            <div>
+                                 <UserButton>
+                                    <UserButton.MenuItems>
+                                        <UserButton.Action labelIcon={<ShoppingCart size={16} />} label="Cart" onClick={()=>router.push('/cart')}/>
+
+                                        </UserButton.MenuItems>
+                                </UserButton>
+                                <UserButton>
+                                    <UserButton.MenuItems>
+                                        <UserButton.Action labelIcon={<PackageIcon size={16} />} label="My Orders" onClick={()=>router.push('/orders')}/>
+
+                                        </UserButton.MenuItems>
+                                </UserButton>
+                            </div>
+                        ) : (
+                            <div className="sm:hidden">
+                        <button onClick={openSignIn} className="px-7 py-1.5 bg-green-600 hover:bg-green-700 text-sm transition text-white rounded-full">
                             Login
                         </button>
                     </div>
+                        )
+
+                    }
+                    
                 </div>
             </div>
         </nav>
