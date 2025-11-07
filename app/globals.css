@@ -1,0 +1,204 @@
+@import "tailwindcss";
+
+@layer components {
+    @keyframes marqueeScroll {
+        0% {
+            transform: translateX(0%);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+}
+
+@layer base {
+    button {
+        cursor: pointer;
+    }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Brand theme variables — updated with white background and dark navbar
+     Color mapping:
+         White (#FFFFFF) -> main background
+         #080708 -> navbar/header
+         #E6E8E6 -> subtle accents
+         #FDCA40 (yellow) -> primary brand
+         #DF2935 (red) -> accent/warning
+         #3772FF (blue) -> secondary
+
+     We keep the Tailwind-like variable names for compatibility with
+     existing utility classes (bg-green-600, text-green-600, etc.)
+*/
+:root {
+        /* Light tints for backgrounds and subtle accents */
+        --color-green-50: #ffffff;  /* pure white background */
+        --color-green-100: #E6E8E6; /* light gray for subtle accents */
+        --color-green-200: #ffefcc; /* lighter yellow */
+        --color-green-300: #ffe4b3; /* warm highlight */
+
+        /* Core brand tones */
+        --color-green-500: #FDCA40; /* yellow - primary */
+        --color-green-600: #3772FF; /* blue - secondary */
+        --color-green-700: #DF2935; /* red - accent */
+
+        /* Page surface and navigation */
+        --color-surface: #ffffff;   /* white for content areas */
+        --color-page-bg: #ffffff;   /* white main background */
+        --color-navbar: #555B6E;    /* dark navbar/header */
+        --color-text: #333333;      /* darker text for better contrast */
+
+        /* Accent colors */
+        --color-indigo-600: #3772FF; /* blue */
+        --color-orange-200: #FDCA40; /* yellow */
+}
+
+/* White background with dark text for better readability */
+body {
+    background-color: var(--color-page-bg);
+    color: var(--color-text);
+}
+
+/* Default text color class for consistent text coloring */
+.text-default {
+    color: var(--color-text);
+}
+
+/* Navbar styling with dark background */
+nav, .navbar, .nav-container {
+    background-color: var(--color-navbar);
+    color: #ffffff;
+}
+
+/* Small helpers to use brand color in CSS when needed */
+.bg-brand { background-color: var(--color-green-600) !important; }
+.text-brand { color: var(--color-green-600) !important; }
+.border-brand { border-color: var(--color-green-600) !important; }
+.btn-brand { background-color: var(--color-green-600); color: white; }
+.btn-brand:hover { background-color: var(--color-green-700); }
+
+/* Improve contrast: when UI uses the brand teal as a background, prefer
+   a dark page-background color instead of pure white to improve readability */
+.bg-green-600.text-white,
+.bg-green-600.text-white *,
+.bg-green-600 > .text-white,
+.btn-brand.text-white {
+    color: #ffffff !important; /* white text for contrast */
+}
+
+/* Apply darker text globally for better contrast on white background */
+p, h1, h2, h3, h4, h5, h6, span, div {
+    color: #333333;
+}
+
+/* Also handle cases where components combine bg-green-600 with text-white
+   via descendant selectors */
+.bg-green-600 .text-white {
+    color: #ffffff !important;
+}
+
+/* Neon logo glow using the new yellow/blue brand colors */
+
+
+/* Image logo blending helper — use `mix-blend-mode: screen` to achieve the requested composite effect */
+.logo-image {
+    display: block;
+    /* Allow natural width while maintaining specified height */
+    height: 100%;
+    width: auto;
+    /* fallback for browsers that prefer the class rather than inline style */
+    mix-blend-mode: screen;
+    padding: 6px 0; /* Add vertical padding only */
+}
+
+/* Optional subtle pulsing for the neon ring */
+.logo-glow.pulse {
+    animation: neonPulse 3s ease-in-out infinite;
+}
+
+@keyframes neonPulse {
+    0% { box-shadow: 0 0 10px rgba(55,114,255,0.18), 0 0 20px rgba(253,202,64,0.08) inset; }
+    50% { box-shadow: 0 0 18px rgba(55,114,255,0.34), 0 0 36px rgba(253,202,64,0.16) inset; }
+    100% { box-shadow: 0 0 10px rgba(55,114,255,0.18), 0 0 20px rgba(253,202,64,0.08) inset; }
+}
+
+/* Text-based brand logo styles (Zillion text-only logo)
+   - .brand-z: dark blue 'Z' (no glow)
+   - .brand-rest: glowing neon 'illion' (uses brand cyan and text-shadow)
+*/
+/* Text logo styling */
+.text-logo {
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    line-height: 1;
+    color: #333333;
+}
+
+.text-logo .brand-z {
+    color: #333333; /* dark text for contrast */
+    font-weight: 900; /* Extra bold */
+    letter-spacing: -0.5px;
+    position: relative; /* For pseudo-element positioning */
+    z-index: 1;
+}
+.text-logo .brand-z::before {
+    content: '';
+    position: absolute;
+    inset: -4px -6px; /* Slightly larger than the text */
+    background: transparent;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    z-index: -1;
+}
+.text-logo .brand-rest {
+    color: var(--color-green-600);
+    font-weight: 700;
+    /* subtle neon text glow in brand tones */
+    text-shadow: 0 0 8px rgba(91,192,190,0.22), 0 0 20px rgba(111,255,233,0.12);
+}
+.text-logo .brand-rest.pulse {
+    animation: neonTextPulse 3s ease-in-out infinite;
+}
+
+@keyframes neonTextPulse {
+    0% { text-shadow: 0 0 6px rgba(91,192,190,0.12), 0 0 12px rgba(111,255,233,0.06); }
+    50% { text-shadow: 0 0 12px rgba(91,192,190,0.34), 0 0 28px rgba(111,255,233,0.16); }
+    100% { text-shadow: 0 0 6px rgba(91,192,190,0.12), 0 0 12px rgba(111,255,233,0.06); }
+}
+
+/* Static glow effect for the 'Z' */
+.brand-z {
+    /* static Z glow using the primary teal tones */
+    text-shadow: 
+        0 1px 0 rgba(0,0,0,0.8),
+        0 0 4px rgba(91,192,190,0.6),
+        0 0 8px rgba(91,192,190,0.3),
+        0 0 12px rgba(111,255,233,0.2);
+}
+
+/* Product card styling with background pattern */
+.product-card-bg {
+    position: relative;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(8px);
+}
+
+.product-card-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../assets/bg.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.08;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+}
