@@ -202,3 +202,15 @@ p, h1, h2, h3, h4, h5, h6, span, div {
     mix-blend-mode: overlay;
     pointer-events: none;
 }
+
+/* Scoped footer override: force footer text and icons to be white so any
+   remaining gray utility classes or inherited rules don't make footer
+   content appear muted. This is intentionally specific and scoped to
+   the footer element to avoid site-wide side effects. */
+footer, footer * {
+    color: #ffffff !important;
+    stroke: currentColor !important; /* SVG strokes inherit white */
+    fill: currentColor !important;   /* SVG fills inherit white */
+}
+footer a { color: inherit !important; }
+footer svg { vertical-align: middle; }

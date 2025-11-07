@@ -29,18 +29,18 @@ const Navbar = () => {
                     </Link>
 
                     {/* Desktop Menu */}
-                    <div className="hidden sm:flex items-center gap-4 lg:gap-8 text-gray-300">
+                    <div className="hidden sm:flex items-center gap-4 lg:gap-8 text-white">
                         <Link href="/" className="hover:text-white transition-colors">Home</Link>
                         <Link href="/shop" className="hover:text-white transition-colors">Shop</Link>
                         <Link href="/" className="hover:text-white transition-colors">About</Link>
                         <Link href="/" className="hover:text-white transition-colors">Contact</Link>
 
                         <form onSubmit={handleSearch} className="hidden xl:flex items-center w-xs text-sm gap-2 bg-gray-700 px-4 py-3 rounded-full">
-                            <Search size={18} className="text-gray-400" />
+                            <Search size={18} className="text-white" />
                             <input className="w-full bg-transparent outline-none text-white placeholder-gray-400" type="text" placeholder="Search products" value={search} onChange={(e) => setSearch(e.target.value)} required />
                         </form>
 
-                        <Link href="/cart" className="relative flex items-center gap-2 text-gray-300 hover:text-white transition-colors">
+                        <Link href="/cart" className="relative flex items-center gap-2 text-white hover:text-white transition-colors">
                             <ShoppingCart size={18} />
                             Cart
                             <button className="absolute -top-1 left-3 text-[8px] text-white bg-green-600 size-3.5 rounded-full">{cartCount}</button>
