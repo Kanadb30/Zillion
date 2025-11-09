@@ -26,9 +26,9 @@
          White (#FFFFFF) -> main background
          #080708 -> navbar/header
          #E6E8E6 -> subtle accents
-         #FDCA40 (yellow) -> primary brand
-         #DF2935 (red) -> accent/warning
-         #3772FF (blue) -> secondary
+         #97e7e1 (yellow) -> primary brand
+         #d88558 (red) -> accent/warning
+         #3f736e (blue) -> secondary
 
      We keep the Tailwind-like variable names for compatibility with
      existing utility classes (bg-green-600, text-green-600, etc.)
@@ -41,19 +41,19 @@
         --color-green-300: #ffe4b3; /* warm highlight */
 
         /* Core brand tones */
-        --color-green-500: #FDCA40; /* yellow - primary */
-        --color-green-600: #3772FF; /* blue - secondary */
-        --color-green-700: #DF2935; /* red - accent */
+        --color-green-500: #97e7e1; /* yellow - primary */
+        --color-green-600: #3f736e; /* blue - secondary */
+        --color-green-700: #d88558; /* red - accent */
 
         /* Page surface and navigation */
         --color-surface: #ffffff;   /* white for content areas */
-        --color-page-bg: #ffffff;   /* white main background */
+        --color-page-bg: #061917;   /* white main background */
         --color-navbar: #555B6E;    /* dark navbar/header */
-        --color-text: #333333;      /* darker text for better contrast */
+        --color-text: #dff8f7;      /* darker text for better contrast */
 
         /* Accent colors */
-        --color-indigo-600: #3772FF; /* blue */
-        --color-orange-200: #FDCA40; /* yellow */
+        --color-indigo-600: #3f736e; /* blue */
+        --color-orange-200: #97e7e1; /* yellow */
 }
 
 /* White background with dark text for better readability */
@@ -91,7 +91,7 @@ nav, .navbar, .nav-container {
 
 /* Apply darker text globally for better contrast on white background */
 p, h1, h2, h3, h4, h5, h6, span, div {
-    color: #333333;
+    color: #dff8f7;
 }
 
 /* Also handle cases where components combine bg-green-600 with text-white
@@ -135,11 +135,11 @@ p, h1, h2, h3, h4, h5, h6, span, div {
     font-weight: 800;
     letter-spacing: -0.05em;
     line-height: 1;
-    color: #333333;
+    color: #dff8f7;
 }
 
 .text-logo .brand-z {
-    color: #333333; /* dark text for contrast */
+    color: #dff8f7; /* dark text for contrast */
     font-weight: 900; /* Extra bold */
     letter-spacing: -0.5px;
     position: relative; /* For pseudo-element positioning */
