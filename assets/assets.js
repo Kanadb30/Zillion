@@ -2,8 +2,6 @@ import gs_logo from "./gs_logo.jpg"
 import zillion_main_logo from "./zillion(main_logo).png"
 import logoo from "./logoo.png"
 import bgPattern from "./bg.png"
-// Use `logoo.png` as the main site logo (preferred by the user). Keep the
-// original zillion_main_logo imported for backwards compatibility if needed.
 const main_logo = logoo;
 import happy_store from "./happy_store.webp"
 import upload_area from "./upload_area.svg"

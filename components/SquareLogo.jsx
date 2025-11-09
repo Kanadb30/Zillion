@@ -6,7 +6,7 @@ import { assets } from "@/assets/assets"
 // Props:
 // - height: pixel height (number) for the logo (default 40)
 // - className: additional classes for the wrapper
-const SquareLogo = ({ height = 40, className = '' }) => {
+const SquareLogo = ({ height = 50, className = '' }) => {
     const wrapperClasses = `inline-flex overflow-hidden ${className}`
 
     return (

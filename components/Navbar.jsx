@@ -25,7 +25,7 @@ const Navbar = () => {
                 <div className="flex items-center justify-between max-w-7xl mx-auto py-4  transition-all">
 
                     <Link href="/" className="relative flex items-center gap-3">
-                        <SquareLogo height={40} className="shrink-0 logo-glow" />
+                        <SquareLogo height={50} className="shrink-0 logo-glow" />
                     </Link>
 
                     {/* Desktop Menu */}
