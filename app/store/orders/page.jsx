@@ -99,7 +99,7 @@ export default function StoreOrders() {
             {/* Modal */}
             {isModalOpen && selectedOrder && (
                 <div onClick={closeModal} className="fixed inset-0 flex items-center justify-center bg-black/50 text-slate-700 text-sm backdrop-blur-xs z-50" >
-                    <div onClick={e => e.stopPropagation()} className="bg-white rounded-lg shadow-lg max-w-2xl w-full p-6 relative">
+                    <div onClick={e => e.stopPropagation()} className="bg-[#779efc] rounded-lg shadow-lg max-w-2xl w-full p-6 relative">
                         <h2 className="text-xl font-semibold text-slate-900 mb-4 text-center">
                             Order Details
                         </h2>
@@ -147,7 +147,7 @@ export default function StoreOrders() {
 
                         {/* Actions */}
                         <div className="flex justify-end">
-                            <button onClick={closeModal} className="px-4 py-2 bg-slate-200 rounded hover:bg-slate-300" >
+                            <button onClick={closeModal} className="px-4 py-2 bg-[#fb962c] rounded hover:bg-slate-300" >
                                 Close
                             </button>
                         </div>

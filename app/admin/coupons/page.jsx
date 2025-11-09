@@ -77,7 +77,7 @@ export default function AdminCoupons() {
                                 onChange={(e) => setNewCoupon({ ...newCoupon, forNewUser: e.target.checked })}
                             />
                             <div className="w-11 h-6 bg-slate-300 rounded-full peer peer-checked:bg-green-600 transition-colors duration-200"></div>
-                            <span className="dot absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform duration-200 ease-in-out peer-checked:translate-x-5"></span>
+                            <span className="dot absolute left-1 top-1 w-4 h-4 bg-[#779efc] rounded-full transition-transform duration-200 ease-in-out peer-checked:translate-x-5"></span>
                         </label>
                         <p>For New User</p>
                     </div>
@@ -88,7 +88,7 @@ export default function AdminCoupons() {
                                 onChange={(e) => setNewCoupon({ ...newCoupon, forMember: e.target.checked })}
                             />
                             <div className="w-11 h-6 bg-slate-300 rounded-full peer peer-checked:bg-green-600 transition-colors duration-200"></div>
-                            <span className="dot absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform duration-200 ease-in-out peer-checked:translate-x-5"></span>
+                            <span className="dot absolute left-1 top-1 w-4 h-4 bg-[#779efc] rounded-full transition-transform duration-200 ease-in-out peer-checked:translate-x-5"></span>
                         </label>
                         <p>For Member</p>
                     </div>
@@ -100,8 +100,8 @@ export default function AdminCoupons() {
             <div className="mt-14">
                 <h2 className="text-2xl text-gray-300">List <span className="text-white font-medium">Coupons</span></h2>
                 <div className="overflow-x-auto mt-4 rounded-lg border border-slate-200 max-w-4xl">
-                    <table className="min-w-full bg-white text-sm">
-                        <thead className="bg-slate-50">
+                    <table className="min-w-full bg-[#779efc] text-sm">
+                        <thead className="bg-[#779efc]">
                             <tr>
                                 <th className="py-3 px-4 text-left font-semibold text-slate-600">Code</th>
                                 <th className="py-3 px-4 text-left font-semibold text-slate-600">Description</th>
@@ -114,7 +114,7 @@ export default function AdminCoupons() {
                         </thead>
                         <tbody className="divide-y divide-slate-200">
                             {coupons.map((coupon) => (
-                                <tr key={coupon.code} className="hover:bg-slate-50">
+                                <tr key={coupon.code} className="hover:bg-[#779efc]">
                                     <td className="py-3 px-4 font-medium text-slate-800">{coupon.code}</td>
                                     <td className="py-3 px-4 text-slate-800">{coupon.description}</td>
                                     <td className="py-3 px-4 text-slate-800">{coupon.discount}%</td>

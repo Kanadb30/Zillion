@@ -31,7 +31,7 @@ export default function AdminStores() {
             {stores.length ? (
                 <div className="flex flex-col gap-4 mt-4">
                     {stores.map((store) => (
-                        <div key={store.id} className="bg-white border border-slate-200 rounded-lg shadow-sm p-6 flex max-md:flex-col gap-4 md:items-end max-w-4xl" >
+                        <div key={store.id} className="bg-[#779efc] border border-slate-200 rounded-lg shadow-sm p-6 flex max-md:flex-col gap-4 md:items-end max-w-4xl" >
                             {/* Store Info */}
                             <StoreInfo store={store} />
 
@@ -41,7 +41,7 @@ export default function AdminStores() {
                                 <label className="relative inline-flex items-center cursor-pointer text-gray-900">
                                     <input type="checkbox" className="sr-only peer" onChange={() => toast.promise(toggleIsActive(store.id), { loading: "Updating data..." })} checked={store.isActive} />
                                     <div className="w-9 h-5 bg-slate-300 rounded-full peer peer-checked:bg-green-600 transition-colors duration-200"></div>
-                                    <span className="dot absolute left-1 top-1 w-3 h-3 bg-white rounded-full transition-transform duration-200 ease-in-out peer-checked:translate-x-4"></span>
+                                    <span className="dot absolute left-1 top-1 w-3 h-3 bg-[#779efc] rounded-full transition-transform duration-200 ease-in-out peer-checked:translate-x-4"></span>
                                 </label>
                             </div>
                         </div>

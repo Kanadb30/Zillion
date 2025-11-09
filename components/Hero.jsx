@@ -24,7 +24,7 @@ const Hero = () => {
                             <p>Starts from</p>
                             <p className='text-3xl'>{currency}4.90</p>
                         </div>
-                        <button className='bg-[#FAF9F9] text-gray-800 text-sm py-2.5 px-7 sm:py-5 sm:px-12 mt-4 sm:mt-10 rounded-md hover:bg-white hover:scale-103 active:scale-95 transition'>LEARN MORE</button>
+                        <button className='bg-[#FAF9F9] text-gray-800 text-sm py-2.5 px-7 sm:py-5 sm:px-12 mt-4 sm:mt-10 rounded-md hover:bg-[#779efc] hover:scale-103 active:scale-95 transition'>LEARN MORE</button>
                     </div>
                     <Image className='sm:absolute bottom-0 right-0 md:right-10 w-full sm:max-w-sm' src={assets.hero_model_img} alt="" />
                 </div>

@@ -30,7 +30,7 @@ const AddressModal = ({ setShowAddressModal }) => {
     }
 
     return (
-        <form onSubmit={e => toast.promise(handleSubmit(e), { loading: 'Adding Address...' })} className="fixed inset-0 z-50 bg-white/60 backdrop-blur h-screen flex items-center justify-center">
+        <form onSubmit={e => toast.promise(handleSubmit(e), { loading: 'Adding Address...' })} className="fixed inset-0 z-50 bg-[#779efc]/60 backdrop-blur h-screen flex items-center justify-center">
             <div className="flex flex-col gap-5 text-slate-700 w-full max-w-sm mx-6">
                 <h2 className="text-3xl ">Add New <span className="font-semibold">Address</span></h2>
                 <input name="name" onChange={handleAddressChange} value={address.name} className="p-2 px-4 outline-none border border-slate-200 rounded w-full" type="text" placeholder="Enter your name" required />

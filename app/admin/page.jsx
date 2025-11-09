@@ -49,7 +49,7 @@ export default function AdminDashboard() {
                                 <p>{card.title}</p>
                                 <b className="text-2xl font-medium text-slate-700">{card.value}</b>
                             </div>
-                            <card.icon size={50} className=" w-11 h-11 p-2.5 text-slate-400 bg-slate-100 rounded-full" />
+                            <card.icon size={50} className=" w-11 h-11 p-2.5 text-slate-400 bg-[#970319] rounded-full" />
                         </div>
                     ))
                 }

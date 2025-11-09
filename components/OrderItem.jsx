@@ -20,7 +20,7 @@ const OrderItem = ({ order }) => {
                     <div className="flex flex-col gap-6">
                         {order.orderItems.map((item, index) => (
                             <div key={index} className="flex items-center gap-4">
-                                <div className="w-20 aspect-square bg-slate-100 flex items-center justify-center rounded-md">
+                                <div className="w-20 aspect-square bg-[#970319] flex items-center justify-center rounded-md">
                                     <Image
                                         className="h-14 w-auto"
                                         src={item.product.images[0]}
@@ -59,7 +59,7 @@ const OrderItem = ({ order }) => {
                             ? 'text-yellow-500 bg-yellow-100'
                             : order.status === 'delivered'
                                 ? 'text-green-500 bg-green-100'
-                                : 'text-slate-500 bg-slate-100'
+                                : 'text-slate-500 bg-[#970319]'
                             }`}
                     >
                         <DotIcon size={10} className="scale-250" />

@@ -50,7 +50,7 @@ export default function Dashboard() {
                                 <p>{card.title}</p>
                                 <b className="text-2xl font-medium text-slate-700">{card.value}</b>
                             </div>
-                            <card.icon size={50} className=" w-11 h-11 p-2.5 text-slate-400 bg-slate-100 rounded-full" />
+                            <card.icon size={50} className=" w-11 h-11 p-2.5 text-slate-400 bg-[#970319] rounded-full" />
                         </div>
                     ))
                 }
@@ -82,7 +82,7 @@ export default function Dashboard() {
                                         ))}
                                     </div>
                                 </div>
-                                <button onClick={() => router.push(`/product/${review.product.id}`)} className="bg-slate-100 px-5 py-2 hover:bg-slate-200 rounded transition-all">View Product</button>
+                                <button onClick={() => router.push(`/product/${review.product.id}`)} className="bg-[#970319] px-5 py-2 hover:bg-[#fb962c] rounded transition-all">View Product</button>
                             </div>
                         </div>
                     ))
