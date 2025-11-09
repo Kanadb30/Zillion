@@ -1,7 +1,8 @@
-import authSeller from "@/middlewares/authSeller";
+//import authSeller from "@/middlewares/authSeller";
 import { getAuth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
+import {axios} from 'axios';
 
 
 

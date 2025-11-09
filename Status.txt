@@ -6,3 +6,6 @@ Clerk Authentication completed
  => change color schemes of buttons and navbar text; DONE
  => make the logo look a little bit bigger;
  =>completely check entire ui for any style glitches; DONE (Maybe)
+
+uncomment this from app>api>store>order>route.js
+ //import authSeller from "@/middlewares/authSeller";

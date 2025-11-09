@@ -3,8 +3,9 @@ import { use, useEffect, useState } from "react"
 import Loading from "@/components/Loading"
 import { orderDummyData } from "@/assets/assets"
 import { useAuth } from "@clerk/nextjs"
-import axios from "axios"
 import { toast } from "react-hot-toast"
+import axios from 'axios'
+
 
 export default function StoreOrders() {
     const [orders, setOrders] = useState([])
