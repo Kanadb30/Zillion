@@ -64,7 +64,7 @@ const Navbar = () => {
                     </div>
 
                     {/* Mobile User Button  */}
-                    {
+                    {/*{ {
                         user ? (
                             <div>
                                  <UserButton>
@@ -88,7 +88,7 @@ const Navbar = () => {
                     </div>
                         )
 
-                    }
+                    } */}
                     
                 </div>
             </div>
