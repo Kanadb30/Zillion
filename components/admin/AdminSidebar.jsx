@@ -20,7 +20,7 @@ const AdminSidebar = () => {
         <div className="inline-flex h-full flex-col gap-5 border-r border-gray-700 bg-gray-800 sm:min-w-60">
             <div className="flex flex-col gap-3 justify-center items-center pt-8 max-sm:hidden">
                 {/* <SquareLogo size={56} className="shrink-0 logo-glow" rounded={false} /> */}
-                <p className="text-gray-300">Hi, Zillion</p>
+                {/* <p className="text-gray-300">Hi, Zillion</p> */}
             </div>
 
             <div className="max-sm:mt-6">
