@@ -27,33 +27,33 @@
          #080708 -> navbar/header
          #E6E8E6 -> subtle accents
          #97e7e1 (yellow) -> primary brand
-         #d88558 (red) -> accent/warning
-         #3f736e (blue) -> secondary
+         #779efc (red) -> accent/warning
+         #970319 (blue) -> secondary
 
      We keep the Tailwind-like variable names for compatibility with
      existing utility classes (bg-green-600, text-green-600, etc.)
 */
 :root {
         /* Light tints for backgrounds and subtle accents */
-        --color-green-50: #ffffff;  /* pure white background */
-        --color-green-100: #E6E8E6; /* light gray for subtle accents */
-        --color-green-200: #ffefcc; /* lighter yellow */
-        --color-green-300: #ffe4b3; /* warm highlight */
+        --color-green-50: #010a1e;  /* pure white background */
+        --color-green-100: #010a1e; /* light gray for subtle accents */
+        --color-green-200: #970319; /* lighter yellow */
+        --color-green-300: #010a1e; /* warm highlight */
 
         /* Core brand tones */
-        --color-green-500: #97e7e1; /* yellow - primary */
-        --color-green-600: #3f736e; /* blue - secondary */
-        --color-green-700: #d88558; /* red - accent */
+        --color-green-500: #779efc; /* yellow - primary */
+        --color-green-600: #970319; /* blue - secondary */
+        --color-green-700: #fb962c; /* red - accent */
 
         /* Page surface and navigation */
-        --color-surface: #ffffff;   /* white for content areas */
-        --color-page-bg: #061917;   /* white main background */
-        --color-navbar: #555B6E;    /* dark navbar/header */
-        --color-text: #dff8f7;      /* darker text for better contrast */
+        --color-surface: #010a1e;   /* white for content areas */
+        --color-page-bg: #010a1e;   /* white main background */
+        --color-navbar: #000;    /* dark navbar/header */
+        --color-text: #dbe6fe;      /* darker text for better contrast */
 
         /* Accent colors */
-        --color-indigo-600: #3f736e; /* blue */
-        --color-orange-200: #97e7e1; /* yellow */
+        --color-indigo-600: #970319; /* blue */
+        --color-orange-200: #fb962c; /* yellow */
 }
 
 /* White background with dark text for better readability */
@@ -70,7 +70,7 @@ body {
 /* Navbar styling with dark background */
 nav, .navbar, .nav-container {
     background-color: var(--color-navbar);
-    color: #ffffff;
+    color: #dbe6fe;
 }
 
 /* Small helpers to use brand color in CSS when needed */
@@ -86,18 +86,18 @@ nav, .navbar, .nav-container {
 .bg-green-600.text-white *,
 .bg-green-600 > .text-white,
 .btn-brand.text-white {
-    color: #ffffff !important; /* white text for contrast */
+    color: #dbe6fe !important; /* white text for contrast */
 }
 
 /* Apply darker text globally for better contrast on white background */
 p, h1, h2, h3, h4, h5, h6, span, div {
-    color: #dff8f7;
+    color: #dbe6fe;
 }
 
 /* Also handle cases where components combine bg-green-600 with text-white
    via descendant selectors */
 .bg-green-600 .text-white {
-    color: #ffffff !important;
+    color: #dbe6fe !important;
 }
 
 /* Neon logo glow using the new yellow/blue brand colors */
@@ -135,11 +135,11 @@ p, h1, h2, h3, h4, h5, h6, span, div {
     font-weight: 800;
     letter-spacing: -0.05em;
     line-height: 1;
-    color: #dff8f7;
+    color: #dbe6fe;
 }
 
 .text-logo .brand-z {
-    color: #dff8f7; /* dark text for contrast */
+    color: #dbe6fe; /* dark text for contrast */
     font-weight: 900; /* Extra bold */
     letter-spacing: -0.5px;
     position: relative; /* For pseudo-element positioning */
@@ -208,7 +208,7 @@ p, h1, h2, h3, h4, h5, h6, span, div {
    content appear muted. This is intentionally specific and scoped to
    the footer element to avoid site-wide side effects. */
 footer, footer * {
-    color: #ffffff !important;
+    color: #dbe6fe !important;
     stroke: currentColor !important; /* SVG strokes inherit white */
     fill: currentColor !important;   /* SVG fills inherit white */
 }
