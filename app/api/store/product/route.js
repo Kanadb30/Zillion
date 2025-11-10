@@ -71,10 +71,8 @@ export async function GET(request) {
         const { userId } = getAuth(request)
         const storeId = await authSeller(userId)
         if (!storeId) {
-            l
             return NextResponse.json({ error: 'not authorized' }, { status: 401 })
         }
-        I
         const products = await prisma.product.findMany({ where: { storeId } })
         return NextResponse.json({ products })
     } catch (error) {
