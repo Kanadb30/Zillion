@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^6.34.5",
+    "@imagekit/nodejs": "^7.1.1",
     "@neondatabase/serverless": "^1.0.2",
     "@prisma/adapter-neon": "^6.19.0",
     "@prisma/client": "^6.19.0",
@@ -29,7 +30,12 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
     "@types/ws": "^8.18.1",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^30.2.0",
     "prisma": "^6.19.0",
     "tailwindcss": "^4"
   }
