@@ -16,7 +16,6 @@ export async function POST(request) {
         if (!storeId) {
             return NextResponse.json({ error: 'not authorized' }, { status: 401 })
         }
-        I
         // check if product exists
         const product = await prisma.product.findFirst({
             where: { id: productId, storeId }
