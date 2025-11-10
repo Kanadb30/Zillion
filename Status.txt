@@ -8,4 +8,8 @@ Clerk Authentication completed
  =>completely check entire ui for any style glitches; DONE (Maybe)
 
 uncomment this from app>api>store>order>route.js
- //import authSeller from "@/middlewares/authSeller";
+ //import authSeller from "@/middlewares/authSeller";  [DONE]
+
+
+
+ Error : axios not defined in stores manage product page. 
