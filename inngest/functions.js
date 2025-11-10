@@ -1,5 +1,5 @@
+import prisma from "@/lib/prisma"
 import { inngest } from "./client"
-import prisma from "../lib/prisma"
 
 export const syncUserCreation = inngest.createFunction(
   { id: 'sync-user-create' },
@@ -36,7 +36,7 @@ export const syncUserUpdation = inngest.createFunction(
 export const syncUserDeletion = inngest.createFunction(
      { id: 'sync-user-delete' },
     { event: 'clerk/user.deleted' },
-    async ({ event}) => {
+    async ({ event }) => {
       const {data} = event;
       await prisma.user.delete({
             where: { id: data.id, }
