@@ -72,7 +72,6 @@ export async function POST(request) {
         return NextResponse.json({ message: "applied, waiting for approval" })
     } catch (error) {
         console.error(error);
-        I
         return NextResponse.json({ error: error.code || error.message }, {
             status:
                 400
