@@ -1,6 +1,6 @@
 import prisma from "@/lib/prisma";
-import { getAuth } from "@clerk/nextjs/dist/types/server";
 import { NextResponse } from "next/server";
+import { getAuth } from "@clerk/nextjs/server";
 
 // Add new address
 export async function POST(request) {
