@@ -38,20 +38,21 @@ export async function POST(request) {
             })
         }
         // image upload to imagekit
-        const buffer = Buffer.from(await image.arrayBuffer());
-        const response = await imagekit.upload({
-            file: buffer,
+        //const buffer = Buffer.from(await image.arrayBuffer());
+        const response = await imagekit.files.upload({
+            file: image,
             fileName: image.name,
             folder: "logos"
         })
-        const optimizedImage = imagekit.url({
-            path: response.filePath,
+        const optimizedImage = imagekit.helper.buildSrc({
+            urlEndpoint: imagekit.urlEndpoint,
+            src: response.filePath,
             transformation: [
-                { quality: 'auto' },
-                { format: 'webp' },
-                { width: '512' }
-            ]
-        })
+                { quality: "auto" },
+                { format: "webp" },
+                { width: 512 },    
+            ],
+        });
         const newStore = await prisma.store.create({
             data: {
                 userId,
