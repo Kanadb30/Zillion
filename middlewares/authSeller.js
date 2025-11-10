@@ -8,7 +8,7 @@ const authSeller = async (userId) => {
         if (user.store) {
             if (user.store.status === 'approved') {
                 return user.store.id
-            } 1
+            }
         } else {
             return false
         }
