@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation"
 import { HomeIcon, ShieldCheckIcon, StoreIcon, TicketPercentIcon } from "lucide-react"
 import Link from "next/link"
 import SquareLogo from "../SquareLogo"
+import { useUser } from "@clerk/nextjs"
 
 const AdminSidebar = () => {
 
