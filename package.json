@@ -26,6 +26,7 @@
     "react-hot-toast": "^2.5.2",
     "react-redux": "^9.2.0",
     "recharts": "^3.1.2",
+    "sharp": "^0.34.5",
     "ws": "^8.18.3"
   },
   "devDependencies": {
@@ -37,6 +38,10 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^30.2.0",
     "prisma": "^6.19.0",
-    "tailwindcss": "^4"
+    "tailwindcss": "^4.1.17"
+  },
+  "optionalDependencies": {
+    "lightningcss-linux": "^1.26.1",
+    "sharp": "^0.33.5"
   }
 }
