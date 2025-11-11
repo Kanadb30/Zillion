@@ -1,9 +1,11 @@
  'use client'
 import Link from "next/link"
 import SquareLogo from "../SquareLogo"
+import { useUser,UserButton } from "@clerk/nextjs"
 
 const AdminNavbar = () => {
 
+    const { user } = useUser()
 
     return (
         <div className="flex items-center justify-between px-12 py-3 border-b border-gray-700 bg-gray-800 transition-all">
@@ -14,7 +16,8 @@ const AdminNavbar = () => {
                 </p>
             </Link>
             <div className="flex items-center gap-3 text-gray-200">
-                <p>Hi, Admin</p>
+                <p>Hi, {user?.firstName}</p>
+                <UserButton />
             </div>
         </div>
     )

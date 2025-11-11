@@ -4,30 +4,46 @@ import Loading from "@/components/Loading"
 import OrdersAreaChart from "@/components/OrdersAreaChart"
 import { CircleDollarSignIcon, ShoppingBasketIcon, StoreIcon, TagsIcon } from "lucide-react"
 import { useEffect, useState } from "react"
+import { useAuth } from "@clerk/nextjs"
+import axios from "axios"
+import { toast } from "react-hot-toast"
 
 export default function AdminDashboard() {
+
+    const { getToken } = useAuth()
 
     const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || '$'
 
     const [loading, setLoading] = useState(true)
-    const [dashboardData, setDashboardData] = useState({
+    const defaultDashboard = {
         products: 0,
         revenue: 0,
         orders: 0,
         stores: 0,
         allOrders: [],
-    })
+    }
+    const [dashboardData, setDashboardData] = useState(defaultDashboard)
 
     const dashboardCardsData = [
-        { title: 'Total Products', value: dashboardData.products, icon: ShoppingBasketIcon },
-        { title: 'Total Revenue', value: currency + dashboardData.revenue, icon: CircleDollarSignIcon },
-        { title: 'Total Orders', value: dashboardData.orders, icon: TagsIcon },
-        { title: 'Total Stores', value: dashboardData.stores, icon: StoreIcon },
+        { title: 'Total Products', value: dashboardData?.products ?? 0, icon: ShoppingBasketIcon },
+        { title: 'Total Revenue', value: currency + (dashboardData?.revenue ?? 0), icon: CircleDollarSignIcon },
+        { title: 'Total Orders', value: dashboardData?.orders ?? 0, icon: TagsIcon },
+        { title: 'Total Stores', value: dashboardData?.stores ?? 0, icon: StoreIcon },
     ]
 
     const fetchDashboardData = async () => {
-        setDashboardData(dummyAdminDashboardData)
-        setLoading(false)
+        try {
+            const token = await getToken()
+            const { data } = await axios.get('/api/admin/dashboard', {
+                headers: { Authorization: `Bearer ${token}` }
+            })
+            // Protect against unexpected response shapes. Use defaultDashboard as fallback.
+            setDashboardData(data?.dashboardData ?? defaultDashboard)
+        } catch (error) {
+            toast.error(error?.response?.data?.error || error.message)
+        } finally {
+            setLoading(false)
+        }
     }
 
     useEffect(() => {
@@ -56,7 +72,7 @@ export default function AdminDashboard() {
             </div>
 
             {/* Area Chart */}
-            <OrdersAreaChart allOrders={dashboardData.allOrders} />
+            <OrdersAreaChart allOrders={dashboardData?.allOrders ?? []} />
         </div>
     )
 }
