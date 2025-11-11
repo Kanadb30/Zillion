@@ -13,3 +13,4 @@ uncomment this from app>api>store>order>route.js
 
 
  Error : axios not defined in stores manage product page. 
+ Error : [Admin>appprove_store] store logo.
