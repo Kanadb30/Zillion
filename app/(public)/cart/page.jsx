@@ -5,6 +5,14 @@ import PageTitle from "@/components/PageTitle";
 import { deleteItemFromCart } from "@/lib/features/cart/cartSlice";
 import { Trash2Icon } from "lucide-react";
 import Image from "next/image";
+import { assets } from '@/assets/assets'
+
+const getSafeSrc = (val, fallback) => {
+    if (!val) return fallback
+    if (typeof val === 'string') return val
+    if (typeof val === 'object' && val.src) return val.src
+    return fallback
+}
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -70,7 +78,7 @@ export default function Cart() {
                                     <tr key={index} className="space-x-2">
                                         <td className="flex gap-3 my-4">
                                             <div className="flex gap-3 items-center justify-center bg-gray-800 size-18 rounded-md">
-                                                <Image src={item.images[0]} className="h-14 w-auto" alt="" width={45} height={45} />
+                                                <Image src={getSafeSrc(item?.images?.[0], assets.upload_area)} className="h-14 w-auto" alt={item?.name || ''} width={45} height={45} />
                                             </div>
                                             <div>
                                                 <p className="max-sm:text-sm">{item.name}</p>

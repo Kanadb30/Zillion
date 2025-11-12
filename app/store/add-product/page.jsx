@@ -41,7 +41,7 @@ export default function StoreAddProduct() {
             formData.append('description', productInfo.description)
             formData.append('mrp', productInfo.mrp)
             formData.append('price', productInfo.price)
-            formData.append('category', productInfo.catégory)
+            formData.append('category', productInfo.category)
             // Adding Images to FormData
             Object.keys(images).forEach((key) => {
                 images[key] && formData.append('images', images[key])
