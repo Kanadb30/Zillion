@@ -6,60 +6,70 @@ import prisma from '@/lib/prisma'
 
 export async function POST(request) {
     try {
-        const { userId , has } = getAuth(request)
-        if(!userId){
-            return NextResponse.json({error: 'not authorized'}, {status: 401})
-        }
-        const { addressId, items, paymentMethod } = await request.json()
-
-        if(!addressId || !items || items.length < 1 || !paymentMethod){
-            return NextResponse.json({error: 'missing order details'}, {status: 400})
+        const { userId } = getAuth(request);
+        if (!userId) {
+            return NextResponse.json({ error: 'not authorized' }, { status: 401 });
         }
 
-        const ordersByStore = new Map()
-        for(const item of items){
+        const { addressId, items, paymentMethod } = await request.json();
+
+        if (!addressId || !items || items.length < 1 || !paymentMethod) {
+            console.error('Missing order details:', { addressId, items, paymentMethod });
+            return NextResponse.json({ error: 'missing order details' }, { status: 400 });
+        }
+
+        const ordersByStore = new Map();
+        for (const item of items) {
             const product = await prisma.product.findUnique({
-                where: {id: item.id}
-            })
-            const storeId = product.storeId
-            if(!ordersByStore.has(storeId)){
-                ordersByStore.set(storeId, [])
+                where: { id: item.id },
+            });
+            if (!product) {
+                console.error('Product not found:', item.id);
+                continue;
             }
-            ordersByStore.get(storeId).push({...item, price: product.price})
+            const storeId = product.storeId;
+            if (!ordersByStore.has(storeId)) {
+                ordersByStore.set(storeId, []);
+            }
+            ordersByStore.get(storeId).push({ ...item, price: product.price });
         }
-        let orderIds = []
-        let fullAmount = 0
 
-        for(const [storeId, sellerItems] of ordersByStore.entries()){
-            let total = sellerItems.reduce((acc, item) => acc + (item.price * item.quantity), 0)
-            fullAmount += parseFloat(total.toFixed(2))
+        let orderIds = [];
+        let fullAmount = 0;
+
+        for (const [storeId, sellerItems] of ordersByStore.entries()) {
+            let total = sellerItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+            fullAmount += parseFloat(total.toFixed(2));
 
             const order = await prisma.order.create({
                 data: {
-                    userId,storeId, addressId,
-                    total : parseFloat(total.toFixed(2)),
+                    userId,
+                    storeId,
+                    addressId,
+                    total: parseFloat(total.toFixed(2)),
                     paymentMethod,
                     orderItems: {
-                        create: sellerItems.map(item => ({
+                        create: sellerItems.map((item) => ({
                             productId: item.id,
                             quantity: item.quantity,
-                            price: item.price
-                        }))
-                    }
-                }
-            })
-            orderIds.push(order.id)
+                            price: item.price,
+                        })),
+                    },
+                },
+            });
+            orderIds.push(order.id);
         }
 
         await prisma.user.update({
-            where: {id: userId},
-            data: {cart : {}}
-        })
+            where: { id: userId },
+            data: { cart: {} },
+        });
 
-        return NextResponse.json({message : 'Order placed successfully'}) 
+        console.log('Order placed successfully:', { orderIds, fullAmount });
+        return NextResponse.json({ message: 'Order placed successfully' });
     } catch (error) {
-        console.error(error);
-        return NextResponse.json({ error: error.code || error.message }, {status : 400} )
+        console.error('Error in POST /api/orders:', error);
+        return NextResponse.json({ error: error.code || error.message }, { status: 400 });
     }
 }
 
