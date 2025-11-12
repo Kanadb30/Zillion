@@ -1,10 +1,4 @@
 {
-   "builds": [
-    { "src": "package.json", "use": "@vercel/next.js" }
-  ],
-  "functions": {
-    "app/**/*.js": { "runtime": "nodejs20.x" } 
-  },
   "installCommand": "npm ci && npm install lightningcss --os=linux --cpu=x64 --include=optional",
   "buildCommand": "npm run build"
 }
