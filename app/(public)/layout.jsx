@@ -19,7 +19,7 @@ export default function PublicLayout({ children }) {
     const { cartItems } = useSelector(state => state.cart)
 
     useEffect(() => {
-        dispatch(fetchProducts())
+        dispatch(fetchProducts({}))
     }, [])
 
     useEffect(() => {

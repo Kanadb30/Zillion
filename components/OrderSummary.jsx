@@ -4,12 +4,20 @@ import AddressModal from './AddressModal';
 import { useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
-
+import { useUser } from '@clerk/nextjs';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { fetchCart } from '@/lib/features/cart/cartSlice';
+import { getAuth } from '@clerk/nextjs/server';
+import { useAuth } from '@clerk/nextjs';
 const OrderSummary = ({ totalPrice, items }) => {
+    const { user } = useUser();
+    const { getToken } = useAuth();
 
     const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || '$';
 
     const router = useRouter();
+    const dispatch = useDispatch();
 
     const addressList = useSelector(state => state.address.list);
 
@@ -26,8 +34,38 @@ const OrderSummary = ({ totalPrice, items }) => {
 
     const handlePlaceOrder = async (e) => {
         e.preventDefault();
+        try {
+            if(!user){
+                return toast('Please Login to procedd')
+            }
+            if(!selectedAddress){
+                return toast('Please select an address to proceed')
+            }
+            const token = await getToken();
+            const orderData = {
+                addressId: selectedAddress.id,
+                items,
+                paymentMethod,
+                
+            }
 
-        router.push('/orders')
+            const { data } = await axios.post('/api/orders', orderData, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+
+            if(paymentMethod === 'STRIPE'){
+                window.location.href = data.session.url;
+            }else{
+                toast.success(data.message);
+                router.push('/orders')
+                dispatch( fetchCart({ getToken }) )
+            }
+            
+        } catch (error) {
+            toast.error(error?.response?.data?.message || error.message)
+        }
+
+        
     }
 
     return (

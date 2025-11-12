@@ -34,7 +34,7 @@ const AddressModal = ({ setShowAddressModal }) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            I
+            
             const token = await getToken()
             const { data } = await axios.post('/api/address', { address }, {
                 headers:

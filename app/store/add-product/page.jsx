@@ -4,6 +4,7 @@ import Image from "next/image"
 import { useState } from "react"
 import { toast } from "react-hot-toast"
 import { useAuth } from "@clerk/nextjs"
+import axios from "axios"
 
 
 export default function StoreAddProduct() {
@@ -31,7 +32,7 @@ export default function StoreAddProduct() {
         e.preventDefault()
         try {
             // if no images are uploaded then return
-            if (limages[1] && !images[2] && !images[3] && !images[4]) {
+            if (!images[1] && !images[2] && !images[3] && !images[4]) {
                 return toast.error('Please upload at least one image')
             }
             setLoading(true)
@@ -47,7 +48,7 @@ export default function StoreAddProduct() {
             })
             const token = await getToken()
             const { data } = await axios.post('/api/store/product', formData, {
-                headers: { Authorization: Bearer`${token}` }
+                headers: { Authorization: `Bearer ${token}` }
             })
             toast.success(data.message)
 

@@ -29,13 +29,22 @@ export async function POST(request) {
         }
         // Uploading Images to ImageKit
         const imagesUrl = await Promise.all(images.map(async (image) => {
-            const buffer = Buffer.from(await image.arrayBuffer());
-            const response = await imagekit.upload({
-                file: buffer,
+           // const buffer = Buffer.from(await image.arrayBuffer());
+            const response = await imagekit.files.upload({
+                file: image,
                 fileName: image.name,
                 folder: "products",
             })
-            const url = imagekit.url({
+            const optimizedImage = imagekit.helper.buildSrc({
+                urlEndpoint: imagekit.urlEndpoint,
+                src: response.filePath,
+                transformation: [
+                    { quality: "auto" },
+                    { format: "webp" },
+                    { width: 512 },      // Number (not string) – good
+                ],
+            });
+ /*           const url = imagekit.url({
                 path: response.filePath,
                 transformation: [
                     { quality: 'auto' },
@@ -43,7 +52,8 @@ export async function POST(request) {
                     { width: '1024' }
                 ]
             })
-            return url
+                */
+            return optimizedImage
         }))
         await prisma.product.create({
             data: {

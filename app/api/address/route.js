@@ -28,7 +28,6 @@ export async function GET(request) {
         return NextResponse.json({ addresses }) 
 } catch (error) {
         console.error(error);
-        I
         return NextResponse.json({ error: error.code || error.message }, {
             status: 400
         })
