@@ -29,21 +29,28 @@ export async function POST(request) {
         }
         // Uploading Images to ImageKit
         const imagesUrl = await Promise.all(images.map(async (image) => {
-           // const buffer = Buffer.from(await image.arrayBuffer());
+            // Convert uploaded File to base64 data URL before sending to ImageKit
+            const arrayBuffer = await image.arrayBuffer();
+            const base64 = Buffer.from(arrayBuffer).toString('base64');
+            const fileData = `data:${image.type || 'application/octet-stream'};base64,${base64}`;
+
             const response = await imagekit.files.upload({
-                file: image,
-                fileName: image.name,
+                file: fileData,
+                fileName: image.name || `product-${Date.now()}`,
                 folder: "products",
             })
-            const optimizedImage = imagekit.helper.buildSrc({
+            // Prefer full URL returned by ImageKit when available; otherwise build optimized URL
+            const optimizedImage = response?.url || imagekit.helper.buildSrc({
                 urlEndpoint: imagekit.urlEndpoint,
                 src: response.filePath,
                 transformation: [
                     { quality: "auto" },
                     { format: "webp" },
-                    { width: 512 },      // Number (not string) – good
+                    { width: 512 },
                 ],
             });
+            // Debug: log ImageKit response to ensure uploads succeed and what URL we saved
+            console.log('ImageKit upload response:', { filePath: response?.filePath, name: response?.name, url: response?.url, optimizedImage })
  /*           const url = imagekit.url({
                 path: response.filePath,
                 transformation: [
@@ -55,7 +62,10 @@ export async function POST(request) {
                 */
             return optimizedImage
         }))
-        await prisma.product.create({
+        // Debug: log the URLs we're about to save to DB
+        console.log('Images URLs to save:', imagesUrl)
+
+        const createdProduct = await prisma.product.create({
             data: {
                 name,
                 description,
@@ -66,7 +76,11 @@ export async function POST(request) {
                 storeId
             }
         })
-        return NextResponse.json({ message: "Product added successfully" })
+
+        // Debug: confirm what was saved
+        console.log('Created product images:', createdProduct?.images)
+
+        return NextResponse.json({ message: "Product added successfully", product: createdProduct })
     } catch (error) {
         console.error(error);
         return NextResponse.json({ error: error.code || error.message }, {

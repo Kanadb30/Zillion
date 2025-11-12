@@ -37,14 +37,19 @@ export async function POST(request) {
                     400
             })
         }
-        // image upload to imagekit
-        //const buffer = Buffer.from(await image.arrayBuffer());
+        // image upload to imagekit: convert File -> base64 data URL for reliable uploads
+        const arrayBuffer = await image.arrayBuffer();
+        const base64 = Buffer.from(arrayBuffer).toString('base64');
+        const fileData = `data:${image.type || 'application/octet-stream'};base64,${base64}`;
         const response = await imagekit.files.upload({
-            file: image,
-            fileName: image.name,
+            file: fileData,
+            fileName: image.name || `logo-${Date.now()}`,
             folder: "logos"
         })
-        const optimizedImage = imagekit.helper.buildSrc({
+        // Debug: ensure ImageKit returned a usable filePath/url
+        console.log('ImageKit store logo upload response:', { filePath: response?.filePath, name: response?.name, url: response?.url })
+        // Prefer full URL returned by ImageKit when available; otherwise build optimized URL
+        const optimizedImage = response?.url || imagekit.helper.buildSrc({
             urlEndpoint: imagekit.urlEndpoint,
             src: response.filePath,
             transformation: [
@@ -53,6 +58,7 @@ export async function POST(request) {
                 { width: 512 },    
             ],
         });
+        console.log('ImageKit store logo upload response (final):', { filePath: response?.filePath, name: response?.name, url: response?.url, optimizedImage })
         const newStore = await prisma.store.create({
             data: {
                 userId,

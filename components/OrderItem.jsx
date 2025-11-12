@@ -1,5 +1,13 @@
 'use client'
 import Image from "next/image";
+import { assets } from '@/assets/assets'
+
+const getSafeSrc = (val, fallback) => {
+    if (!val) return fallback
+    if (typeof val === 'string') return val
+    if (typeof val === 'object' && val.src) return val.src
+    return fallback
+}
 import { DotIcon } from "lucide-react";
 import { useSelector } from "react-redux";
 import Rating from "./Rating";
@@ -20,11 +28,11 @@ const OrderItem = ({ order }) => {
                     <div className="flex flex-col gap-6">
                         {order.orderItems.map((item, index) => (
                             <div key={index} className="flex items-center gap-4">
-                                <div className="w-20 aspect-square bg-[#970319] flex items-center justify-center rounded-md">
+                                    <div className="w-20 aspect-square bg-[#970319] flex items-center justify-center rounded-md">
                                     <Image
                                         className="h-14 w-auto"
-                                        src={item.product.images[0]}
-                                        alt="product_img"
+                                        src={getSafeSrc(item?.product?.images?.[0], assets.upload_area)}
+                                        alt={item?.product?.name || 'product_img'}
                                         width={50}
                                         height={50}
                                     />

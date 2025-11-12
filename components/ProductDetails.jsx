@@ -5,6 +5,14 @@ import { StarIcon, TagIcon, EarthIcon, CreditCardIcon, UserIcon } from "lucide-r
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Image from "next/image";
+import { assets } from '@/assets/assets'
+
+const getSafeSrc = (val, fallback) => {
+    if (!val) return fallback
+    if (typeof val === 'string') return val
+    if (typeof val === 'object' && val.src) return val.src
+    return fallback
+}
 import Counter from "./Counter";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -18,7 +26,7 @@ const ProductDetails = ({ product }) => {
 
     const router = useRouter()
 
-    const [mainImage, setMainImage] = useState(product.images[0]);
+    const [mainImage, setMainImage] = useState(product.images && product.images.length > 0 ? product.images[0] : assets.upload_area);
 
     const addToCartHandler = () => {
         dispatch(addToCart({ productId }))
@@ -30,14 +38,14 @@ const ProductDetails = ({ product }) => {
         <div className="flex max-lg:flex-col gap-12">
                 <div className="flex max-sm:flex-col-reverse gap-3">
                 <div className="flex sm:flex-col gap-3">
-                    {product.images.map((image, index) => (
+                    {product.images && product.images.map((image, index) => (
                         <div key={index} onClick={() => setMainImage(product.images[index])} className="bg-gray-800 flex items-center justify-center size-26 rounded-lg group cursor-pointer">
-                            <Image src={image} className="group-hover:scale-103 group-active:scale-95 transition" alt="" width={45} height={45} />
+                            <Image src={getSafeSrc(image, assets.upload_area)} className="group-hover:scale-103 group-active:scale-95 transition" alt={product.name || ''} width={45} height={45} />
                         </div>
                     ))}
                 </div>
                 <div className="flex justify-center items-center h-100 sm:size-113 bg-gray-800 rounded-lg">
-                    <Image src={mainImage} alt="" width={250} height={250} />
+                    <Image src={getSafeSrc(mainImage, assets.upload_area)} alt={product.name || ''} width={250} height={250} />
                 </div>
             </div>
             <div className="flex-1">
