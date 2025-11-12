@@ -2,6 +2,7 @@ import { getAuth } from '@clerk/nextjs/server'
 import { PaymentMethod } from '@prisma/client'
 import { parse } from 'date-fns'
 import { NextResponse } from 'next/server'
+import prisma from '@/lib/prisma'
 
 export async function POST(request) {
     try {
