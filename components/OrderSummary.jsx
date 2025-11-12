@@ -8,7 +8,6 @@ import { useUser } from '@clerk/nextjs';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { fetchCart } from '@/lib/features/cart/cartSlice';
-import { getAuth } from '@clerk/nextjs/server';
 import { useAuth } from '@clerk/nextjs';
 const OrderSummary = ({ totalPrice, items }) => {
     const { user } = useUser();
