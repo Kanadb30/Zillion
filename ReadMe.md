@@ -32,6 +32,7 @@ If Node or Git are not installed, follow these steps:
 
 - Windows:
   - Download Node.js LTS from https://nodejs.org and run the installer.
+  - Download NVM (Node Version Manager) from https://github.com/coreybutler/nvm-windows/releases/download/1.2.2/nvm-setup.exe  and run the installer.
   - Download Git for Windows from https://git-scm.com and run the installer.
 - macOS (Homebrew):
   - Install Homebrew.
@@ -56,6 +57,8 @@ Clone the repository and install dependencies:
 git clone https://github.com/Kanadb30/Zillion.git
 cd Zillion
 cp .env.example .env
+nvm install 20.17.0
+nvm use 20.17.0
 npm install
 ```
 
