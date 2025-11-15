@@ -47,7 +47,17 @@ If Node or Git are not installed, follow these steps:
   - Install Node, npm, and Git.
   ```bash
   sudo apt update && sudo apt install -y nodejs npm git
-  ``` 
+  ```
+  - Install NVM
+    ```bash
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+    ```
+    or
+    ```bash
+    wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+    ```
+    For more info or if facing any errors look here :-https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating
+    
 
 ## Installation
 
