@@ -7,7 +7,7 @@
     "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "prisma generate && npm install lightningcss --os=linux --cpu=x64 --include=optional"
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.34.5",
@@ -39,10 +39,5 @@
     "jest": "^30.2.0",
     "prisma": "^6.19.0",
     "tailwindcss": "^4.1.17"
-  },
-  "optionalDependencies": {
-    "@tailwindcss/oxide-linux-x64-gnu": "^4.0.14",
-    "lightningcss-linux-x64-gnu": "^1.29.0",
-    "sharp": "^0.34.5"
   }
 }
