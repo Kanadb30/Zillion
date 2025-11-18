@@ -24,14 +24,14 @@ Zillion is a modern web platform built with Next.js and Prisma. It delivers fast
 
 ## Prerequisites
 
-- **Node.js** v18 or higher  
+- **nvm** (Node.js version manager)  
 - **npm** v8 or higher  
 - **Git** (command-line)  
 
-If Node or Git are not installed, follow these steps:
+If nvm or Git are not installed, follow these steps:
 
 - Windows:
-  - Download Node.js LTS from https://nodejs.org and run the installer.
+  - Download NVM (Node Version Manager) from https://github.com/coreybutler/nvm-windows/releases/download/1.2.2/nvm-setup.exe  and run the installer.
   - Download Git for Windows from https://git-scm.com and run the installer.
 - macOS (Homebrew):
   - Install Homebrew.
@@ -43,10 +43,20 @@ If Node or Git are not installed, follow these steps:
   brew install node git
   ```
 - Ubuntu/Debian:
-  - Install Node, npm, and Git.
+  - Install nvm, npm, and Git.
   ```bash
-  sudo apt update && sudo apt install -y nodejs npm git
-  ``` 
+  sudo apt update -y && sudo apt install -y nodejs npm git
+  ```
+  - Install NVM
+    ```bash
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+    ```
+    or
+    ```bash
+    wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+    ```
+    For more info or if facing any errors look here :-https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating
+    
 
 ## Installation
 
@@ -56,6 +66,8 @@ Clone the repository and install dependencies:
 git clone https://github.com/Kanadb30/Zillion.git
 cd Zillion
 cp .env.example .env
+nvm install 20.17.0
+nvm use 20.17.0
 npm install
 ```
 

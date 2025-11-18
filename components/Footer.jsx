@@ -33,7 +33,7 @@ const Footer = () => {
         {
             title: "CONTACT",
             links: [
-                { text: "zillion.infiniy.co@gmail.com", path: '/', icon: MailIcon },
+                { text: "zillion.infinity.co@gmail.com", path: '/', icon: MailIcon },
                 { text: "IIT Bhilai", path: '/', icon: MapPinIcon }
             ]
         }
