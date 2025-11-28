@@ -1,6 +1,7 @@
 # Zillion 
 
 Zillion is a modern web platform built with Next.js and Prisma. It delivers fast data handling and rich analytics. 
+
 **Link** - https://github.com/Kanadb30/Zillion
 
 ## Features
@@ -105,7 +106,7 @@ The app listens on port 3000 by default.
 
 ## Hidden Pages
 
-- **Admin Panel**: Can only be accessed by adminId[zillion.infinity.co@gmail.com].
+- **Admin Panel**: Can only be accessed by adminId [zillion.infinity.co@gmail.com].
 - **Store Page**: Can be accessed by any store if approved by admin.
  
  To get access to **admin panel** or **store page** contact me. 
