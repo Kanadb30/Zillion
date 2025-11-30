@@ -2,7 +2,8 @@
 
 Zillion is a modern web platform built with Next.js and Prisma. It delivers fast data handling and rich analytics. 
 
-**Link** - https://github.com/Kanadb30/Zillion
+**GITHUB Link** - https://github.com/Kanadb30/Zillion
+
 
 ## Features
 
